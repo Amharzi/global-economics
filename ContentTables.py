@@ -3,11 +3,11 @@ import re, csv, os
 
 
 def getTable(filename):
-		with open('C:/Users/AYB/ProjPdf/HTMLs/{}'.format(filename), 'rb') as html:
+		with open('Html documents path '.format(filename), 'rb') as html:
 			soup = BeautifulSoup(html,"lxml")
 		test = soup(text=re.compile(r'.*_.[0-9]'))
 		filename2 = filename.replace('html','txt')
-		f = open('C:/Users/AYB/ProjPdf/Tables/{}'.format(filename2), 'w')
+		f = open('path to folder where output to be saved'.format(filename2), 'w')
 		for elem in test:
 			f.write(elem)
 			f.write('\n')
@@ -28,7 +28,7 @@ def get_Txt(Loc):
             Files.append(names)
     return Files
 def txttocsv(filenames):	
-		F= open("C:/Users/AYB/ProjPdf/Tables/{}".format(filenames),'r')
+		F= open("path to location where table are saved".format(filenames),'r')
 		C = F.readlines()
 		List=[]
 		filename2 = filenames.replace('txt','csv')
@@ -46,8 +46,8 @@ def txttocsv(filenames):
 			writer.writerow(T)
 		CS.close()
 def main():
-	DocList = get_Htmls("/Users/AYB/ProjPdf/HTMLs/")
-	DocList2 = get_Txt("/Users/AYB/ProjPdf/Tables/")
+	DocList = get_Htmls("html documents repository path")
+	DocList2 = get_Txt("Table of contents repository path")
 	for doc in DocList: 
 		getTable(doc)
 	for doc2 in DocList2:
